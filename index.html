@@ -11,14 +11,14 @@
     * { margin:0; padding:0; box-sizing:border-box; }
     body {
       min-height: 100vh;
-      background: linear-gradient(to bottom, #fdfaf5, #f9f5ef, #f5f0e9);
+      background: linear-gradient(to bottom, #fdfaf5, #f9f5ef, #f5f0e9); /* البيج الفاتح */
       font-family: 'Amiri', serif;
       color: #5d4037;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
-      padding: 100px 30px 160px;
+      padding: 120px 30px 160px;
       text-align: center;
       overflow-y: auto;
       position: relative;
@@ -26,22 +26,17 @@
       touch-action: manipulation;
     }
 
-    /* Ripple Effect احترافي عند الضغط */
-    .ripple {
+    /* الصورة المتحركة في الأعلى يسار - مدمجة مع الخلفية */
+    .animated-flower {
       position: absolute;
-      border-radius: 50%;
-      background: rgba(109,76,65,0.15); /* بني فاتح شفاف */
-      transform: scale(0);
-      animation: rippleAnim 0.8s linear;
-      pointer-events: none;
+      top: 20px;
+      left: 20px;
+      width: clamp(180px, 35vw, 320px);
+      height: auto;
+      opacity: 0.92; /* شوية شفافية عشان تندمج مع البيج */
       z-index: 5;
-    }
-
-    @keyframes rippleAnim {
-      to {
-        transform: scale(4);
-        opacity: 0;
-      }
+      filter: brightness(1.05) contrast(0.95); /* تعديل خفيف للاندماج */
+      pointer-events: none;
     }
 
     .container {
@@ -160,12 +155,15 @@
 
     @media (max-width: 600px) {
       .tap-hint { font-size: 1.6rem; padding: 20px 40px; }
+      .animated-flower { width: 200px; left: 10px; top: 10px; }
       .scroll-hint { bottom: 20px; right: 20px; font-size: 1rem; }
-      .scroll-hint span { font-size: 1.3rem; }
     }
   </style>
 </head>
 <body>
+
+  <!-- الـ GIF في الأعلى يسار - مدمج مع الخلفية -->
+  <img src="https://media.tenor.com/PyuNzX0-IFwAAAAi/dandelion-flower.gif" alt="Dandelion flower" class="animated-flower">
 
   <div class="tap-hint">Tap me here baby</div>
 
@@ -196,7 +194,6 @@
     const body = document.body;
     let started = false;
 
-    // ضغطة فعالة + ripple effect احترافي
     ['click', 'touchstart', 'touchend'].forEach(event => {
       body.addEventListener(event, (e) => {
         if (started) return;
@@ -209,25 +206,10 @@
         hint.style.opacity = '0';
         setTimeout(() => hint.style.display = 'none', 800);
 
-        // Ripple effect عند الضغطة
-        const ripple = document.createElement('div');
-        ripple.classList.add('ripple');
-        const rect = body.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        ripple.style.left = x + 'px';
-        ripple.style.top = y + 'px';
-        ripple.style.width = '100px';
-        ripple.style.height = '100px';
-        body.appendChild(ripple);
-
-        setTimeout(() => ripple.remove(), 800);
-
         revealLines();
       }, { passive: false });
     });
 
-    // fallback بعد 3 ثواني
     setTimeout(() => {
       if (!started) {
         started = true;
