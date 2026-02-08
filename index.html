@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>For smry</title>
   
   <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
@@ -18,7 +18,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
-      padding: clamp(60px, 15vw, 140px) clamp(15px, 5vw, 30px) clamp(200px, 40vh, 280px);
+      padding: 140px 30px 300px;
       text-align: right;
       overflow-y: auto;
       position: relative;
@@ -26,30 +26,37 @@
       touch-action: manipulation;
     }
 
-    .animated-flower {
+    /* الوردات الصفرا مكررة على اليسار طول الصفحة (زي الدائرة البرتقالية) */
+    .left-flowers {
       position: absolute;
-      left: clamp(10px, 4vw, 20px);
-      width: clamp(80px, 20vw, 180px);
-      height: auto;
-      opacity: 0.75;
-      z-index: 5;
+      left: 10px;
+      top: 0;
+      bottom: 0;
+      width: clamp(100px, 25vw, 220px);
       pointer-events: none;
+      z-index: 5;
+      opacity: 0.75;
     }
 
-    .flower-top { top: clamp(20px, 5vw, 30px); }
-
-    .flower-last {
-      top: clamp(300px, 60vh, 400px);
-      left: clamp(15px, 5vw, 30px);
+    .left-flower {
+      position: absolute;
+      width: 100%;
+      height: auto;
+      left: 0;
     }
+
+    .left-flower:nth-child(1) { top: 5%; }
+    .left-flower:nth-child(2) { top: 30%; }
+    .left-flower:nth-child(3) { top: 55%; }
+    .left-flower:nth-child(4) { top: 80%; }
 
     .container {
-      max-width: 95%;
+      max-width: 90%;
       position: relative;
       z-index: 10;
       opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 1.4s ease, transform 1.8s ease-out;
+      transform: translateY(40px);
+      transition: opacity 1.6s ease, transform 2s ease-out;
     }
 
     .started .container {
@@ -58,15 +65,15 @@
     }
 
     .line {
-      font-size: clamp(1.8rem, 6.5vw, 3.2rem);
+      font-size: clamp(2.1rem, 7vw, 3.8rem);
       font-weight: 400;
-      margin: clamp(2rem, 6vw, 3.2rem) 0 clamp(1.2rem, 4vw, 1.8rem);
+      margin: 3.2rem 0 1.8rem;
       line-height: 1.8;
-      letter-spacing: 0.8px;
+      letter-spacing: 1px;
       opacity: 0;
-      transform: translateY(40px);
-      transition: all 2.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-      text-shadow: 0 3px 12px rgba(93,64,55,0.15);
+      transform: translateY(50px);
+      transition: all 2.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+      text-shadow: 0 4px 15px rgba(93,64,55,0.15);
     }
 
     .started .line.visible {
@@ -76,37 +83,41 @@
 
     #line1 {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      font-size: clamp(3.8rem, 13vw, 6.5rem);
+      font-size: clamp(4.5rem, 14vw, 7rem);
       font-weight: 600;
       color: #4e342e;
       text-shadow: 0 8px 25px rgba(78,52,46,0.2);
-      margin-bottom: clamp(3rem, 10vw, 5rem);
+      margin-bottom: 5rem;
       opacity: 1;
       transform: none;
       letter-spacing: 1px;
     }
 
     .poem {
-      font-size: clamp(1.5rem, 5.5vw, 2.3rem);
-      margin: clamp(3rem, 10vw, 5rem) auto clamp(3rem, 10vw, 5rem);
+      font-size: clamp(1.6rem, 5.5vw, 2.5rem);
+      margin: 4rem auto 5rem;
       line-height: 2.2;
       text-align: center;
       opacity: 0;
-      transform: translateY(50px);
-      transition: all 2.8s ease-out;
+      transform: translateY(60px);
+      transition: all 3s ease-out;
       color: #6d4c41;
-      text-shadow: 0 3px 12px rgba(109,76,65,0.15);
-      max-width: 90%;
+      text-shadow: 0 3px 14px rgba(109,76,65,0.2);
+      max-width: 80%;
     }
 
     .note {
-      font-size: clamp(1.4rem, 5vw, 2rem);
-      margin: clamp(3rem, 10vw, 4rem) 0 clamp(2rem, 8vw, 3rem);
+      font-size: clamp(1.5rem, 5vw, 2.2rem);
+      margin: 4rem 0 2rem;
       opacity: 0;
-      transform: translateY(50px);
-      transition: all 3.2s ease-out;
+      transform: translateY(60px);
+      transition: all 3.3s ease-out;
       color: #8d6e63;
-      text-shadow: 0 3px 10px rgba(141,110,99,0.15);
+      text-shadow: 0 3px 12px rgba(141,110,99,0.2);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
     }
 
     .tap-hint {
@@ -115,7 +126,7 @@
       left: 50%;
       transform: translate(-50%, -50%);
       font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      font-size: clamp(1.6rem, 7vw, 2.5rem);
+      font-size: clamp(1.8rem, 7vw, 2.8rem);
       font-weight: 600;
       color: #4e342e;
       text-shadow: 0 4px 15px rgba(78,52,46,0.2);
@@ -129,9 +140,9 @@
 
     .scroll-hint {
       position: fixed;
-      bottom: clamp(20px, 5vw, 30px);
-      right: clamp(20px, 5vw, 30px);
-      font-size: clamp(1.1rem, 4vw, 1.3rem);
+      bottom: 30px;
+      right: 30px;
+      font-size: 1.3rem;
       color: rgba(109,76,65,0.85);
       opacity: 0;
       pointer-events: none;
@@ -149,7 +160,7 @@
     }
 
     .scroll-hint span {
-      font-size: clamp(1.4rem, 5vw, 1.6rem);
+      font-size: 1.6rem;
       animation: bounce 3s infinite;
     }
 
@@ -159,7 +170,7 @@
     }
 
     @media (max-width: 600px) {
-      body { padding-left: 15px; padding-right: 15px; }
+      body { padding: 80px 20px 220px; }
       .tap-hint { font-size: 2rem; }
       .animated-flower { width: 140px; }
       .flower-last { width: 160px; top: 350px; left: 25px; }
@@ -169,7 +180,13 @@
 </head>
 <body>
 
-  <img src="https://media.tenor.com/PyuNzX0-IFwAAAAi/dandelion-flower.gif" alt="Dandelion flower" class="animated-flower flower-top">
+  <!-- الوردات الصفرا مكررة على اليسار طول الصفحة (الدائرة البرتقالية) -->
+  <div class="left-flowers">
+    <img src="https://media.tenor.com/PyuNzX0-IFwAAAAi/dandelion-flower.gif" class="animated-flower">
+    <img src="https://media.tenor.com/PyuNzX0-IFwAAAAi/dandelion-flower.gif" class="animated-flower">
+    <img src="https://media.tenor.com/PyuNzX0-IFwAAAAi/dandelion-flower.gif" class="animated-flower">
+    <img src="https://media.tenor.com/PyuNzX0-IFwAAAAi/dandelion-flower.gif" class="animated-flower">
+  </div>
 
   <div class="tap-hint">Tap me here baby</div>
 
@@ -189,10 +206,11 @@
       تدري ان الخطا ماهو بحاجة عظيمة
     </div>
 
-    <div class="note">مايهون علي غضبك حبيبتي سمري</div>
-
-    <!-- الوردة الأخيرة صغيرة على اليسار تحت -->
-    <img src="https://media.tenor.com/tc_FNglzcDMAAAAi/flower.gif" alt="Flower last" class="animated-flower flower-last">
+    <div class="note">
+      مايهون علي غضبك حبيبتي سمري
+      <!-- الوردة الأخيرة صغيرة على اليسار تحت الجملة (الدائرة الحمراء) -->
+      <img src="https://media.tenor.com/tc_FNglzcDMAAAAi/flower.gif" alt="Flower last" class="animated-flower flower-last">
+    </div>
   </div>
 
   <div class="scroll-hint">
