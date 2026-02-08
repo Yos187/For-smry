@@ -11,9 +11,9 @@
     * { margin:0; padding:0; box-sizing:border-box; }
     body {
       min-height: 100vh;
-      background: linear-gradient(to bottom, #fdfaf5, #f9f5ef, #f5f0e9); /* بيج فاتح مريح وفخم */
+      background: linear-gradient(to bottom, #fdfaf5, #f9f5ef, #f5f0e9);
       font-family: 'Amiri', serif;
-      color: #5d4037; /* بني فخم دافئ */
+      color: #5d4037;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -23,6 +23,7 @@
       overflow-y: auto;
       cursor: pointer;
       position: relative;
+      touch-action: manipulation;
     }
 
     .container {
@@ -59,7 +60,7 @@
     #line1 {
       font-size: clamp(4.8rem, 15vw, 8rem);
       font-weight: 800;
-      color: #4e342e; /* بني غامق فخم */
+      color: #4e342e;
       text-shadow: 0 8px 25px rgba(78,52,46,0.25);
       margin-bottom: 5rem;
       opacity: 1;
@@ -87,81 +88,49 @@
       text-shadow: 0 3px 14px rgba(109,76,65,0.2);
     }
 
+    .tap-hint {
+      position: fixed;
+      bottom: 50px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: clamp(1.4rem, 5vw, 1.8rem);
+      font-weight: 700;
+      color: #6d4c41;
+      background: rgba(255,255,255,0.8);
+      padding: 18px 40px;
+      border-radius: 60px;
+      box-shadow: 0 12px 40px rgba(109,76,65,0.3);
+      pointer-events: none;
+      animation: pulseHint 2.5s infinite;
+      z-index: 30;
+      white-space: nowrap;
+      backdrop-filter: blur(12px);
+      border: 2px solid rgba(109,76,65,0.25);
+    }
+
+    @keyframes pulseHint {
+      0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.95; }
+      50%      { transform: translateX(-50%) scale(1.08); opacity: 0.6; }
+    }
+
     .scroll-hint {
       position: fixed;
       bottom: 30px;
       right: 30px;
-      font-size: 1.4rem;
+      font-size: 1.5rem;
       color: #6d4c41;
       opacity: 0;
       pointer-events: none;
       z-index: 20;
-      transition: opacity 1.2s ease 2.5s;
+      transition: opacity 1.5s ease 3s;
       display: flex;
       align-items: center;
       gap: 12px;
-      text-shadow: 0 2px 8px rgba(109,76,65,0.2);
+      text-shadow: 0 2px 10px rgba(109,76,65,0.2);
     }
 
     .started .scroll-hint {
-      opacity: 0.9;
+      opacity: 0.95;
     }
 
-    .scroll-hint span {
-      font-size: 1.8rem;
-      animation: bounce 2.5s infinite;
-    }
-
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50%      { transform: translateY(-10px); }
-    }
-
-    @media (max-width: 600px) {
-      .scroll-hint { bottom: 20px; right: 20px; font-size: 1.2rem; }
-      .scroll-hint span { font-size: 1.6rem; }
-    }
-  </style>
-</head>
-<body>
-
-  <div class="tap-hint">Tap me here baby</div>
-
-  <div class="container">
-    <div id="line1" class="line">HEY SMRY</div>
-    <div class="line">سامحيني عصبتك</div>
-    <div class="line">حقك علي</div>
-    <div class="line">يا أحلى بنت في الكون</div>
-    <div class="line">أحبك للأبد يا دنيتي</div>
-    
-    <div class="poem">
-      يامليحة وانا مخطي وحزني تنامى<br>
-      لين وردت نفسي لدروب الظليمة<br>
-      عاذرتني؟ تراني عن خطاي اتساامى<br>
-      العذر شيمةٍ لأهل القلوب الحشيمة<br>
-      لوتشوف العباير في عيون النشامى<br>
-      تدري ان الخطا ماهو بحاجة عظيمة
-    </div>
-
-    <div class="note">مايهون علي غضبك حبيبتي سمري ❤️</div>
-  </div>
-
-  <div class="scroll-hint">
-    كملي تحت حبيبتي <span>↓</span>
-  </div>
-
-  <script>
-    const body = document.body;
-    let started = false;
-
-    body.addEventListener('click', startAnimation);
-    body.addEventListener('touchstart', startAnimation, { passive: true });
-
-    function startAnimation() {
-      if (started) return;
-      started = true;
-
-      body.classList.add('started');
-      const hint = document.querySelector('.tap-hint');
-      hint.style.opacity = '0';
-      setTimeout
+    .
