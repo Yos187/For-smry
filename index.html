@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>For You 🤍</title>
+
+<style>
+body {
+  margin: 0;
+  background: linear-gradient(180deg, #0b0b0b, #1a001a);
+  color: white;
+  font-family: Arial;
+  overflow-x: hidden;
+}
+
+section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: 1.2s ease;
+}
+
+section.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+h1, h2, p {
+  max-width: 600px;
+}
+
+img {
+  width: 80%;
+  max-width: 380px;
+  border-radius: 20px;
+  margin-top: 20px;
+  box-shadow: 0 0 30px rgba(255, 0, 100, 0.2);
+}
+
+button {
+  margin-top: 25px;
+  padding: 12px 30px;
+  border-radius: 25px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* قلوب بالخلفية */
+.heart {
+  position: fixed;
+  color: rgba(255, 105, 180, 0.2);
+  font-size: 20px;
+  animation: float 10s linear infinite;
+}
+
+@keyframes float {
+  from { transform: translateY(100vh); }
+  to { transform: translateY(-10vh); }
+}
+</style>
+</head>
+
+<body>
+
+<audio autoplay loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<section class="show">
+  <h1>Hey baby 🤍</h1>
+  <button onclick="go()">كملي</button>
+</section>
+
+<section>
+  <p>آسف إذا عصّبتك…</p>
+</section>
+
+<section>
+  <img src="love1.jpg">
+  <p>أحبك كثير، سامحيني</p>
+</section>
+
+<section>
+  <p>يا أحلى سمر بالدنيا</p>
+</section>
+
+<section>
+  <img src="love2.jpg">
+  <p>هذي هدية ڤالنتاين ومراضاة بنفس الوقت</p>
+</section>
+
+<section>
+  <h2>أحبك للأبد 🤍</h2>
+</section>
+
+<script>
+function go() {
+  window.scrollTo({ top: window.innerHeight, behavior: "smooth" });
+}
+
+let sections = document.querySelectorAll("section");
+window.addEventListener("scroll", () => {
+  sections.forEach(sec => {
+    if (sec.getBoundingClientRect().top < window.innerHeight - 100) {
+      sec.classList.add("show");
+    }
+  });
+});
+
+// قلوب
+for (let i = 0; i < 20; i++) {
+  let heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "❤";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = (6 + Math.random() * 6) + "s";
+  document.body.appendChild(heart);
+}
+</script>
+
+</body>
+</html>
