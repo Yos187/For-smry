@@ -26,22 +26,29 @@
       touch-action: manipulation;
     }
 
-    .animated-flower {
+    /* الوردات الصفرا مكررة على اليسار طول الصفحة (زي الدائرة البرتقالية) */
+    .left-flowers {
       position: absolute;
-      left: 20px;
-      width: clamp(100px, 20vw, 180px);
-      height: auto;
-      opacity: 0.7;
-      z-index: 5;
+      left: 10px;
+      top: 0;
+      bottom: 0;
+      width: clamp(100px, 25vw, 220px);
       pointer-events: none;
+      z-index: 5;
+      opacity: 0.75;
     }
 
-    .flower-top { top: 30px; }
-
-    .flower-last {
-      top: 400px;
-      left: 30px;
+    .left-flower {
+      position: absolute;
+      width: 100%;
+      height: auto;
+      left: 0;
     }
+
+    .left-flower:nth-child(1) { top: 5%; }
+    .left-flower:nth-child(2) { top: 30%; }
+    .left-flower:nth-child(3) { top: 55%; }
+    .left-flower:nth-child(4) { top: 80%; }
 
     .container {
       max-width: 90%;
@@ -107,6 +114,10 @@
       transition: all 3.3s ease-out;
       color: #8d6e63;
       text-shadow: 0 3px 12px rgba(141,110,99,0.2);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
     }
 
     .tap-hint {
@@ -169,7 +180,7 @@
 </head>
 <body>
 
-  <!-- الوردات الصفرا مكررة على اليسار طول الصفحة -->
+  <!-- الوردات الصفرا مكررة على اليسار طول الصفحة (الدائرة البرتقالية) -->
   <div class="left-flowers">
     <img src="https://media.tenor.com/PyuNzX0-IFwAAAAi/dandelion-flower.gif" class="animated-flower">
     <img src="https://media.tenor.com/PyuNzX0-IFwAAAAi/dandelion-flower.gif" class="animated-flower">
@@ -182,9 +193,9 @@
   <div class="container">
     <div id="line1" class="line">Hey smry</div>
     <div class="line">سامحيني عصبتك</div>
-    <div class="line">حقك علي ياحلوتي</div>
-    <div class="line">كلي معك ولك وتحت أمرك</div>
-    <div class="line">أحبك للأبد يا دنيتي</div>
+    <div class="line">حقك علي حلوتي</div>
+    <div class="line"> كل شي ولا رفعة ضغطك   </div>
+    <div class="line">أحبك للأبد  دنيتي</div>
     
     <div class="poem">
       يامليحة وانا مخطي وحزني تنامى<br>
@@ -196,7 +207,8 @@
     </div>
 
     <div class="note">
-      مايهون علي غضبك حبيبي
+      مايهون علي غضبك حبيبي 
+      <!-- الوردة الأخيرة صغيرة على اليسار تحت الجملة (الدائرة الحمراء) -->
       <img src="https://media.tenor.com/tc_FNglzcDMAAAAi/flower.gif" alt="Flower last" class="animated-flower flower-last">
     </div>
   </div>
