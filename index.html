@@ -1,129 +1,137 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<title>For You 🤍</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>For smry</title>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      height: 100vh;
+      background: linear-gradient(-45deg, #ff6b6b, #ff8e53, #ffafbd, #ffc3a0);
+      background-size: 400% 400%;
+      animation: gradient 18s ease infinite;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #fff;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+    }
 
-<style>
-body {
-  margin: 0;
-  background: linear-gradient(180deg, #0b0b0b, #1a001a);
-  color: white;
-  font-family: Arial;
-  overflow-x: hidden;
-}
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
 
-section {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 20px;
-  opacity: 0;
-  transform: translateY(40px);
-  transition: 1.2s ease;
-}
+    .container {
+      position: relative;
+      z-index: 10;
+      max-width: 95%;
+      padding: 20px;
+    }
 
-section.show {
-  opacity: 1;
-  transform: translateY(0);
-}
+    .line {
+      font-size: 3.5rem;
+      margin: 1.2rem 0;
+      opacity: 0;
+      transform: translateY(60px);
+      transition: all 1.2s ease-out;
+      text-shadow: 0 0 15px rgba(255, 105, 180, 0.9);
+    }
 
-h1, h2, p {
-  max-width: 600px;
-}
+    .line.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-img {
-  width: 80%;
-  max-width: 380px;
-  border-radius: 20px;
-  margin-top: 20px;
-  box-shadow: 0 0 30px rgba(255, 0, 100, 0.2);
-}
+    #line1 {
+      font-size: 5.5rem;
+      animation: pulse 2s infinite, float 7s ease-in-out infinite;
+      color: #ffebee;
+    }
 
-button {
-  margin-top: 25px;
-  padding: 12px 30px;
-  border-radius: 25px;
-  border: none;
-  font-size: 16px;
-  cursor: pointer;
-}
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.12); }
+    }
 
-/* قلوب بالخلفية */
-.heart {
-  position: fixed;
-  color: rgba(255, 105, 180, 0.2);
-  font-size: 20px;
-  animation: float 10s linear infinite;
-}
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-25px); }
+    }
 
-@keyframes float {
-  from { transform: translateY(100vh); }
-  to { transform: translateY(-10vh); }
-}
-</style>
+    .heart {
+      position: absolute;
+      font-size: 2.8rem;
+      animation: rise linear infinite;
+      opacity: 0.85;
+      pointer-events: none;
+      user-select: none;
+      text-shadow: 0 0 10px #ff4081;
+    }
+
+    @keyframes rise {
+      0% { transform: translateY(120vh) rotate(0deg); opacity: 0.9; }
+      100% { transform: translateY(-20vh) rotate(720deg); opacity: 0; }
+    }
+
+    .note {
+      font-size: 1.4rem;
+      margin-top: 4rem;
+      opacity: 0;
+      animation: fadeIn 2s forwards 5s;
+      color: #ffebee;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+  </style>
 </head>
-
 <body>
 
-<audio autoplay loop>
-  <source src="music.mp3" type="audio/mpeg">
-</audio>
+  <div class="container">
+    <div id="line1" class="line">Hey baby</div>
+    <div id="line2" class="line">سامحيني عصبتك</div>
+    <div id="line3" class="line">حقك علي</div>
+    <div id="line4" class="line">يا أحلى بنت في الكون</div>
+    <div id="line5" class="line">أحبك للأبد يا دنيتي</div>
+    
+    <div class="note">هذي تعتبر هدية فلنتاين عشان ما تقولين ما سوى لي شي ❤️</div>
+  </div>
 
-<section class="show">
-  <h1>Hey baby 🤍</h1>
-  <button onclick="go()">كملي</button>
-</section>
+  <script>
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.innerHTML = Math.random() > 0.5 ? "❤️" : "💖";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (Math.random() * 5 + 6) + "s";
+      heart.style.fontSize = (Math.random() * 2 + 1.8) + "rem";
+      heart.style.animationDelay = Math.random() * 2 + "s";
 
-<section>
-  <p>آسف إذا عصّبتك…</p>
-</section>
-
-<section>
-  <img src="love1.jpg">
-  <p>أحبك كثير، سامحيني</p>
-</section>
-
-<section>
-  <p>يا أحلى سمر بالدنيا</p>
-</section>
-
-<section>
-  <img src="love2.jpg">
-  <p>هذي هدية ڤالنتاين ومراضاة بنفس الوقت</p>
-</section>
-
-<section>
-  <h2>أحبك للأبد 🤍</h2>
-</section>
-
-<script>
-function go() {
-  window.scrollTo({ top: window.innerHeight, behavior: "smooth" });
-}
-
-let sections = document.querySelectorAll("section");
-window.addEventListener("scroll", () => {
-  sections.forEach(sec => {
-    if (sec.getBoundingClientRect().top < window.innerHeight - 100) {
-      sec.classList.add("show");
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 12000);
     }
-  });
-});
 
-// قلوب
-for (let i = 0; i < 20; i++) {
-  let heart = document.createElement("div");
-  heart.className = "heart";
-  heart.innerHTML = "❤";
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.animationDuration = (6 + Math.random() * 6) + "s";
-  document.body.appendChild(heart);
-}
-</script>
+    setInterval(createHeart, 350);
+
+    const lines = document.querySelectorAll('.line');
+    let delay = 800;
+
+    lines.forEach((line, index) => {
+      if (index === 0) {
+        setTimeout(() => line.classList.add('visible'), 300);
+      } else {
+        setTimeout(() => line.classList.add('visible'), delay);
+        delay += 1800;
+      }
+    });
+  </script>
 
 </body>
 </html>
