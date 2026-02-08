@@ -21,9 +21,7 @@
       padding: 80px 20px 140px;
       text-align: center;
       overflow-y: auto;
-      cursor: pointer;
       position: relative;
-      touch-action: manipulation;
     }
 
     .container {
@@ -90,27 +88,20 @@
 
     .tap-hint {
       position: fixed;
-      bottom: 50px;
+      top: 50%;
       left: 50%;
-      transform: translateX(-50%);
-      font-size: clamp(1.4rem, 5vw, 1.8rem);
+      transform: translate(-50%, -50%);
+      font-size: clamp(1.6rem, 6vw, 2.2rem);
       font-weight: 700;
       color: #6d4c41;
-      background: rgba(255,255,255,0.8);
-      padding: 18px 40px;
-      border-radius: 60px;
-      box-shadow: 0 12px 40px rgba(109,76,65,0.3);
-      pointer-events: none;
-      animation: pulseHint 2.5s infinite;
+      background: rgba(255,255,255,0.85);
+      padding: 24px 48px;
+      border-radius: 20px;
+      box-shadow: 0 15px 50px rgba(109,76,65,0.35);
       z-index: 30;
       white-space: nowrap;
-      backdrop-filter: blur(12px);
-      border: 2px solid rgba(109,76,65,0.25);
-    }
-
-    @keyframes pulseHint {
-      0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.95; }
-      50%      { transform: translateX(-50%) scale(1.08); opacity: 0.6; }
+      text-align: center;
+      max-width: 90%;
     }
 
     .scroll-hint {
@@ -133,4 +124,76 @@
       opacity: 0.95;
     }
 
-    .
+    .scroll-hint span {
+      font-size: 2rem;
+      animation: bounce 2.5s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(-12px); }
+    }
+
+    @media (max-width: 600px) {
+      .tap-hint { font-size: 1.6rem; padding: 20px 40px; }
+      .scroll-hint { bottom: 20px; right: 20px; font-size: 1.3rem; }
+      .scroll-hint span { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="tap-hint">جاري التحميل يا قلبي... 💕</div>
+
+  <div class="container">
+    <div id="line1" class="line">HEY SMRY</div>
+    <div class="line">سامحيني عصبتك</div>
+    <div class="line">حقك علي</div>
+    <div class="line">يا أحلى بنت في الكون</div>
+    <div class="line">أحبك للأبد يا دنيتي</div>
+    
+    <div class="poem">
+      يامليحة وانا مخطي وحزني تنامى<br>
+      لين وردت نفسي لدروب الظليمة<br>
+      عاذرتني؟ تراني عن خطاي اتساامى<br>
+      العذر شيمةٍ لأهل القلوب الحشيمة<br>
+      لوتشوف العباير في عيون النشامى<br>
+      تدري ان الخطا ماهو بحاجة عظيمة
+    </div>
+
+    <div class="note">مايهون علي غضبك حبيبتي سمري ❤️</div>
+  </div>
+
+  <div class="scroll-hint">
+    كملي تحت حبيبتي <span>↓</span>
+  </div>
+
+  <script>
+    const body = document.body;
+
+    // نبدأ تلقائيًا بعد 2 ثواني (بدون الحاجة لضغط)
+    setTimeout(() => {
+      body.classList.add('started');
+      const hint = document.querySelector('.tap-hint');
+      hint.style.opacity = '0';
+      setTimeout(() => hint.style.display = 'none', 800);
+
+      revealLines();
+    }, 2000);
+
+    const lines = document.querySelectorAll('.line:not(#line1), .poem, .note');
+    let delay = 800;
+
+    function revealLines() {
+      lines.forEach((el) => {
+        setTimeout(() => {
+          el.style.opacity = '1';
+          el.style.transform = 'translateY(0)';
+        }, delay);
+        delay += 3200;
+      });
+    }
+  </script>
+
+</body>
+</html>
